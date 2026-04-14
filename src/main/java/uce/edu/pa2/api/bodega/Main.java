@@ -16,7 +16,7 @@ public class Main {
         private PedidoService service;
         @Override
         public int run(String... args) throws Exception {
-            Pedido pedido1 = new Pedido("Alex Caiza","Laptop",500,"ales@gmail.com");
+            Pedido pedido1 = new Pedido("Alex Caiza","Laptop",150,"ales@gmail.com");
             this.service.crear(pedido1);  
             return 0;
         }

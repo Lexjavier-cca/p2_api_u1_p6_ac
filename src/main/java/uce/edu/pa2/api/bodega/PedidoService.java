@@ -5,8 +5,31 @@ import jakarta.inject.Inject;
 @ApplicationScoped
 public class PedidoService {
     //Logica de negocio, usar el prefijo service para las clases que se encargan de la logica de negocio
-    @Inject
-    private NotificadorMail notificadorMail;
+   
+    //Di por constructor
+   //@Inject
+   // public PedidoService(NotificadorMail notificadorMail){
+    //    this.notificadorMail=notificadorMail;
+
+  //  }
+
+   //Di por atributo
+   // @Inject
+   // private NotificadorMail notificadorMail;
+
+   //DI por metodo
+   /*
+   private NotificadorMail notificadorMail; 
+   @Inject 
+   public void setNotificadorMail(NotificadorMail notificadorMail){
+        this.notificadorMail=notificadorMail;
+   }
+   */
+  @Inject
+  private NotificadorSelector selector;
+
+
+
 
     public void crear(Pedido pedido){
         System.out.println("Registrando el pedido: " + pedido);
@@ -15,7 +38,9 @@ public class PedidoService {
         System.out.println("Guardando en la base de datos");
        //Sin DI:  NotificadorMail notificacion1= new NotificadorMail();
        //Con DI por el contenedor
-        notificadorMail.enviar(pedido.getCorreo(), "Se ha creado un pedido para ser atendido");
+        Notificador notificador=this.selector.seleccionar(pedido.getTotal());
+        notificador.enviar(pedido.getDestino(), "Su pedido ha sido registrado con exito");
+        
     }
 
 

@@ -1,9 +1,11 @@
 package uce.edu.pa2.api.bodega;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Default;
 
 @ApplicationScoped
-public class NotificadorMail {
+@Default
+public class NotificadorMail implements Notificador{
     public void enviar(String correo, String mensaje) {
         // Lógica para enviar el correo electrónico
         System.out.println("Se envia el mail al correo: " + correo);

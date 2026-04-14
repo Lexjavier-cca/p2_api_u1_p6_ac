@@ -5,7 +5,18 @@ public class Pedido {
     private String cliente;
     private String producto;
     private double total;
-    private String correo;
+    private String destino;
+    //Metodo constructor por defecto
+    public Pedido() {
+    }
+    //Metodo constructor
+    public Pedido(String cliente, String producto, double total, String correo) {
+        this.cliente = cliente;
+        this.producto = producto;
+        this.total = total;
+        this.destino = correo;
+    }
+
     //Metodos get y set
     public String getCliente() {
         return cliente;
@@ -25,26 +36,18 @@ public class Pedido {
     public void setTotal(double total) {
         this.total = total;
     }
-    public String getCorreo() {
-        return correo;
+    public String getDestino() {
+        return destino;
     }
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setDestino(String correo) {
+        this.destino = correo;
     }
-    //Metodo constructor
-    public Pedido(String cliente, String producto, double total, String correo) {
-        this.cliente = cliente;
-        this.producto = producto;
-        this.total = total;
-        this.correo = correo;
-    }
-    //Metodo constructor por defecto
-    public Pedido() {
-    }
+
+    
     //Metodo toString
     @Override
     public String toString() {
-        return "Pedido [cliente=" + cliente + ", producto=" + producto + ", total=" + total + ", correo=" + correo
+        return "Pedido [cliente=" + cliente + ", producto=" + producto + ", total=" + total + ", correo=" + destino
                 + "]";
     }
 }
