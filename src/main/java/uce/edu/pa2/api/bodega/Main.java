@@ -23,7 +23,14 @@ public class Main {
             //Caso2
             Pedido pedido2 = new Pedido("Maria Perez","Smartphone",80,"09999999");
             this.service.crear(pedido2);
+            
+
+            //caso3 
+            Pedido pedido3= new Pedido("Juan Gomez","Audifonos",30,"09999999");
+            this.service.crear(pedido3);
             return 0;
+
+            
         }
     }
 

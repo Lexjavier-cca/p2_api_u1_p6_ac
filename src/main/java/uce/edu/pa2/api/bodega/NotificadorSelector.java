@@ -14,7 +14,10 @@ public class NotificadorSelector {
         if (total > 100) {
             //MAIL
             return mail;
-        } else {
+        }else if(total < 50){
+            //WHATSAPP
+            return new NotificadorWhatsapp();
+        }else{
             //SMS
             return sms;
         }
