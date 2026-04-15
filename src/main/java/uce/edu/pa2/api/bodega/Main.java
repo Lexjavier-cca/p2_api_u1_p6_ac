@@ -16,8 +16,13 @@ public class Main {
         private PedidoService service;
         @Override
         public int run(String... args) throws Exception {
+            //Caso1
             Pedido pedido1 = new Pedido("Alex Caiza","Laptop",150,"ales@gmail.com");
             this.service.crear(pedido1);  
+            
+            //Caso2
+            Pedido pedido2 = new Pedido("Maria Perez","Smartphone",80,"09999999");
+            this.service.crear(pedido2);
             return 0;
         }
     }
