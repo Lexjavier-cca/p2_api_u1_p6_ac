@@ -21,12 +21,12 @@ public class Main {
             this.service.crear(pedido1);  
             
             //Caso2
-            Pedido pedido2 = new Pedido("Maria Perez","Smartphone",80,"09999999");
+            Pedido pedido2 = new Pedido("Alex Caiza","Smartphone",80,"09999999");
             this.service.crear(pedido2);
             
 
             //caso3 
-            Pedido pedido3= new Pedido("Juan Gomez","Audifonos",30,"09999999");
+            Pedido pedido3= new Pedido("Alex Caiza","Audifonos",30,"09999999");
             this.service.crear(pedido3);
             return 0;
 
