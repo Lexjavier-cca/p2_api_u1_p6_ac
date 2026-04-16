@@ -1,7 +1,9 @@
 package uce.edu.pa2.api.bodega;
 
+import io.quarkus.arc.Unremovable;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+@Unremovable
 @ApplicationScoped
 public class PedidoService {
     //Logica de negocio, usar el prefijo service para las clases que se encargan de la logica de negocio
