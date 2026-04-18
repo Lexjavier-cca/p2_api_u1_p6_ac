@@ -1,6 +1,6 @@
 package uce.edu.pa2.api.bodega;
 
 public interface Comprobante {
-    public void generar(String destino);
+    public void generar(String persona);
 
 }
