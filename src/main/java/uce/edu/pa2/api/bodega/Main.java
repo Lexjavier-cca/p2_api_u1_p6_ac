@@ -5,6 +5,7 @@ import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import jakarta.enterprise.inject.spi.CDI;
 //import jakarta.inject.Inject;
+import jakarta.inject.Inject;
 
 @QuarkusMain
 public class Main {
@@ -17,26 +18,30 @@ public class Main {
         //Modelos IoC
         //1. DI
     
-        //@Inject
-        //private PedidoService service;
+        @Inject
+        private PedidoService service;
+
+        @Inject
+        private PagoTarjeta tarjeta;
+
+        @Inject
+        private PagoEfectivo efectivo;
         
         //2. Service Locator (lookup)
         //private PedidoService service=CDI.current().select(PedidoService.class).get();
         @Override
         public int run(String... args) throws Exception {
-            PedidoService service=CDI.current().select(PedidoService.class).get();
+            
             //Caso1
-            Pedido pedido1 = new Pedido("Alex Caiza","Laptop",150,"ales@gmail.com");
-            service.crear(pedido1);  
+            Pedido pedido1 = new Pedido("Alex Caiza","Laptop",570,null);
+            service.crear(pedido1,efectivo); 
+             
             
             //Caso2
             Pedido pedido2 = new Pedido("Alex Caiza","Smartphone",80,"09999999");
-            service.crear(pedido2);
+            service.crear(pedido2,tarjeta);
             
 
-            //caso3 
-            Pedido pedido3= new Pedido("Alex Caiza","Audifonos",30,"09999999");
-            service.crear(pedido3);
             return 0;
 
             

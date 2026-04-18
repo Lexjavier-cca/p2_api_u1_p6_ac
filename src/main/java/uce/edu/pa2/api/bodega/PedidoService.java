@@ -27,21 +27,32 @@ public class PedidoService {
         this.notificadorMail=notificadorMail;
    }
    */
-  @Inject
-  private NotificadorSelector selector;
+    @Inject
+    private NotificadorSelector selector;
 
+    @Inject
+    private ComprobanteSelector compSelector;
 
+    
 
-
-    public void crear(Pedido pedido){
+    public void crear(Pedido pedido,PagoStrategy pago){
         System.out.println("Registrando el pedido: " + pedido);
         System.out.println("Cliente: " + pedido.getCliente());
         System.out.println("Total: " + pedido.getTotal());
         System.out.println("Guardando en la base de datos");
+
+        pago.ejecutar(pedido.getTotal());
+        
+
        //Sin DI:  NotificadorMail notificacion1= new NotificadorMail();
        //Con DI por el contenedor
         Notificador notificador=this.selector.seleccionar(pedido.getTotal());
         notificador.enviar(pedido.getDestino(), "Su pedido ha sido registrado con exito");
+        Comprobante generador = this.compSelector.seleccionar(pedido.getDestino());
+        System.out.println("---Recibo---");
+        generador.seleccionar(pedido.getDestino());
+       
+
         
     }
 
