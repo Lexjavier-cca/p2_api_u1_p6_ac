@@ -10,7 +10,7 @@ public class ComprobanteSelector {
     @Inject
     private ComprobantePDF pdf;
 
-    public Comprobante seleccionar(String pedido){
+    public Comprobante seleccionar(Pedido pedido){
         if(pedido != null){
             return pdf;
         }

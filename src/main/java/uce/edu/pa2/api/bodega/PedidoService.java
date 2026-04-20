@@ -48,9 +48,10 @@ public class PedidoService {
        //Con DI por el contenedor
         Notificador notificador=this.selector.seleccionar(pedido.getTotal());
         notificador.enviar(pedido.getDestino(), "Su pedido ha sido registrado con exito");
-        Comprobante generador = this.compSelector.seleccionar(pedido.getDestino());
+        
         System.out.println("---Recibo---");
-        generador.seleccionar(pedido.getDestino());
+        Comprobante comp = compSelector.seleccionar(pedido);
+        comp.generar(pedido.getDestino());
        
 
         
