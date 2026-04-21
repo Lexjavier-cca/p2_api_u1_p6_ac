@@ -3,9 +3,10 @@ package uce.edu.pa2.api.bodega;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
-import jakarta.enterprise.inject.spi.CDI;
-//import jakarta.inject.Inject;
 import jakarta.inject.Inject;
+
+//import jakarta.inject.Inject;
+
 
 @QuarkusMain
 public class Main {
@@ -15,36 +16,58 @@ public class Main {
        
     }
     public static class App implements QuarkusApplication{
-        //Modelos IoC
-        //1. DI
+        @Inject
+        private AmbitoAplicacion ambitoAplicacion;
+
+        @Inject
+        private ClaseIntermedia claseIntermedia;
+
+        @Inject
+        private AmbitoRequest ambitoRequest;
+
+        @Inject
+        private AmbitoInject ambitoInject;
+
+        @Inject
+        private AmbitoSingleton ambitoSingleton;
     
-        @Inject
-        private PedidoService service;
-
-        @Inject
-        private PagoTarjeta tarjeta;
-
-        @Inject
-        private PagoEfectivo efectivo;
-        
-        //2. Service Locator (lookup)
-        //private PedidoService service=CDI.current().select(PedidoService.class).get();
         @Override
         public int run(String... args) throws Exception {
-            
-            //Caso1
-            Pedido pedido1 = new Pedido("Alex Caiza","Laptop",570,null);
-            service.crear(pedido1,efectivo); 
-             
-            
-            //Caso2
-            Pedido pedido2 = new Pedido("Alex Caiza","Smartphone",80,"09999999");
-            service.crear(pedido2,tarjeta);
-            
+            System.out.println("****************Ambito Aplicacion***********");
+            System.out.println(this.ambitoAplicacion);
+            System.out.println(this.ambitoAplicacion.incrementar());
+            System.out.println(this.ambitoAplicacion.incrementar());
+            System.out.println(this.ambitoAplicacion.incrementar());
 
-            return 0;
+            this.claseIntermedia.imprimirObjetoValor();
 
-            
+           /* 
+            System.out.println("****************Ambito Request***********");
+            System.out.println(this.ambitoRequest.incrementar());
+            System.out.println(this.ambitoRequest.incrementar());
+            System.out.println(this.ambitoRequest.incrementar());
+            System.out.println(this.ambitoRequest.incrementar());
+             */
+
+            System.out.println("****************Ambito Dependent***********");
+            System.out.println(this.ambitoInject.incrementar());
+            System.out.println(this.ambitoInject.incrementar());
+            System.out.println(this.ambitoInject.incrementar());
+
+            this.claseIntermedia.imprimirObjetoValorInject();
+
+            System.out.println("****************Ambito Singleton***********");
+            System.out.println(this.ambitoSingleton);
+            System.out.println(this.ambitoSingleton.incrementar());
+            System.out.println(this.ambitoSingleton.incrementar());
+            System.out.println(this.ambitoSingleton.incrementar());
+
+            this.claseIntermedia.imprimirObjetoValorSingleton();
+
+
+
+
+            return 0;     
         }
     }
 

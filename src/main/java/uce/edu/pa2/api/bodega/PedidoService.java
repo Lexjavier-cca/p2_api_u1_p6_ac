@@ -50,7 +50,7 @@ public class PedidoService {
         notificador.enviar(pedido.getDestino(), "Su pedido ha sido registrado con exito");
         Comprobante generador = this.compSelector.seleccionar(pedido.getDestino());
         System.out.println("---Recibo---");
-        generador.seleccionar(pedido.getDestino());
+        generador.generar(pedido.getDestino());
        
 
         
