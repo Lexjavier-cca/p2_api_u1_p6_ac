@@ -41,7 +41,7 @@ public class Main {
 
             this.claseIntermedia.imprimirObjetoValor();
 
-           /* 
+           /* //
             System.out.println("****************Ambito Request***********");
             System.out.println(this.ambitoRequest.incrementar());
             System.out.println(this.ambitoRequest.incrementar());
@@ -63,6 +63,7 @@ public class Main {
             System.out.println(this.ambitoSingleton.incrementar());
 
             this.claseIntermedia.imprimirObjetoValorSingleton();
+            System.out.println();
 
 
 
