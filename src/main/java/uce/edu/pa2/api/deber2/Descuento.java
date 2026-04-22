@@ -1,7 +1,7 @@
 package uce.edu.pa2.api.deber2;
 
 import jakarta.enterprise.context.Dependent;
-
+//Usando el dependent
 @Dependent
 public class Descuento {
     private double total;

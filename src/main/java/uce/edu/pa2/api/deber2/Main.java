@@ -24,9 +24,6 @@ public class Main {
 
         @Inject
         private ConfiguracionAplicacion config;
-
-        @Inject GeneradorIDSingleton generador;
-
     
         @Override
         public int run(String... args) throws Exception {
@@ -40,10 +37,7 @@ public class Main {
             pedido.setTotal(valorFinal);
             this.pedidoService.procesar(pedido);
             System.out.println();
-            System.out.println("Referencias de los objetos inyectados en main:");
-            System.out.println(this.config + " Ejemplo de ApplicationScoped");
-            System.out.println(this.generador + " Ejemplo de singleton");
-            System.out.println(this.descuentoTemporada + " ejemplo de Dependent");
+
 
 
             

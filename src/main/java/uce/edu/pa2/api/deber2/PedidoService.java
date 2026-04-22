@@ -26,13 +26,7 @@ public class PedidoService {
         System.out.println("Total con descuento: " + valorFinal);
         System.out.println("Guardando el pedido en la base de datos...");
         System.out.println("Pedido procesado exitosamente.");
-
         System.out.println();
-        System.out.println("Referencias de los objetos inyectados en pedido service:");
-
-        System.out.println(this.config + " Ejemplo de ApplicationScoped");
-        System.out.println(this.generador + " ejemplo de singleton");
-        System.out.println(this.descuento + " Ejemplo de Dependent");
 
 
     }
