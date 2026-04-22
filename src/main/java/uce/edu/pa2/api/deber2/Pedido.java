@@ -1,11 +1,15 @@
-package uce.edu.pa2.api.bodega;
+package uce.edu.pa2.api.deber2;
 
+import jakarta.enterprise.context.Dependent;
+@Dependent
 public class Pedido {
     //Atributos de las clases
     private String cliente;
     private String producto;
     private double total;
     private String destino;
+    private int id;
+
     //Metodo constructor por defecto
     public Pedido() {
     }
@@ -15,6 +19,7 @@ public class Pedido {
         this.producto = producto;
         this.total = total;
         this.destino = correo;
+        
     }
 
     //Metodos get y set
@@ -42,7 +47,6 @@ public class Pedido {
     public void setDestino(String correo) {
         this.destino = correo;
     }
-
     
     //Metodo toString
     @Override
@@ -50,4 +54,6 @@ public class Pedido {
         return "Pedido [cliente=" + cliente + ", producto=" + producto + ", total=" + total + ", correo=" + destino
                 + "]";
     }
+
+
 }
