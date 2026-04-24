@@ -2,7 +2,7 @@ package uce.edu.pa2.api.bodega;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Dependent;
-// Esta clase se encarga de medir el tiempo de ejecución de una vent
+// Esta clase se encarga de medir el tiempo de ejecución de una ventgi
 @Dependent
 public class TrakingVenta {
     private long tiempoInicio = 0;
