@@ -1,10 +1,11 @@
 package uce.edu.pa2.api.bodega;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
-@ApplicationScoped
-public class ProcesadorVentaService {
+@Dependent
+public class ProcesadorVentaEnLineaService {
     @Inject
     private EstadisticasVentasGlobales estadisticasVentasGlobales;
 
@@ -14,7 +15,7 @@ public class ProcesadorVentaService {
     public void procesar(Venta venta) throws InterruptedException{
         this.trakingVenta.iniciar();
         //inicia la venta
-        System.out.println("Procesando pedido: " + venta);
+        System.out.println("Procesando pedido en linea: " + venta);
         //consultando a la base de datos
         //consultando el stock de cada item
         //entre otras cosas
@@ -32,3 +33,4 @@ public class ProcesadorVentaService {
         this.estadisticasVentasGlobales.registrarVenta(venta.getTotal());
     }
 }
+

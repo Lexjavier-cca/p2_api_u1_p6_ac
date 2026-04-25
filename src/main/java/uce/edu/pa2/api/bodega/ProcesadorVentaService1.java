@@ -1,10 +1,11 @@
 package uce.edu.pa2.api.bodega;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
-@ApplicationScoped
-public class ProcesadorVentaService {
+@Dependent
+public class ProcesadorVentaService1 {
     @Inject
     private EstadisticasVentasGlobales estadisticasVentasGlobales;
 
@@ -32,3 +33,4 @@ public class ProcesadorVentaService {
         this.estadisticasVentasGlobales.registrarVenta(venta.getTotal());
     }
 }
+
