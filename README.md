@@ -1,81 +1,521 @@
 # p2_api_u1_p6_ac
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## Descripción
+En este proyecto se muestran los talleres trabajados en la Unidad 1 de la materia de Programación Avanzada 2 de la Universidad Central del Ecuador,en el cual se vieron temas como Contenedores, CDI, DI, IoC, Ámbitos y contextos, entre otros más.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+## Tecnologías Usadas
+- Java
+- Quarkus
+- Maven
 
-## Running the application in dev mode
+# Deber Número 3
+## Ejemplos de uso de la anotación @Dependent
+Por cada vez que se inyecte una clase con esta anotación, se creará una nueva instancia
+### Ejemplo 1
+``` java
+import jakarta.enterprise.context.Dependent;
 
-You can run your application in dev mode that enables live coding using:
+/**
+ * Servicio de operaciones matemáticas básicas.
+ */
+@Dependent
+public class CalculadoraService {
 
-```shell script
-./mvnw quarkus:dev
+    /**
+     * Suma dos números enteros.
+     *
+     * @param a primer número
+     * @param b segundo número
+     * @return resultado de la suma
+     */
+    public int sumar(int a, int b) {
+        return a + b;
+    }
+}
 ```
+### Ejemplo 2
+``` java
+import jakarta.enterprise.context.Dependent;
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+/**
+ * Clase utilitaria para formateo de texto. 
+ */
+@Dependent
+public class FormateadorTexto {
 
-## Packaging and running the application
-
-The application can be packaged using:
-
-```shell script
-./mvnw package
+    /**
+     * Convierte un texto a mayúsculas.
+     *
+     * @param texto texto de entrada
+     * @return texto en mayúsculas
+     */
+    public String mayusculas(String texto) {
+        return texto.toUpperCase();
+    }
+}
 ```
+### Ejemplo 3
+``` java
+import jakarta.enterprise.context.Dependent;
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+/**
+ * Componente encargado de validar direcciones de correo electrónico.
+ */
+@Dependent
+public class ValidadorEmail {
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
+    /**
+     * Verifica si un correo electrónico tiene un formato básico válido.
+     *
+     * @param email correo a validar
+     * @return true si contiene '@', caso contrario retorna false
+     */
+    public boolean esValido(String email) {
+        return email.contains("@");
+    }
+}
 ```
+### Ejemplo 4
+```java
+import jakarta.enterprise.context.Dependent;
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+/**
+ * Clase que lleva un conteo de operaciones realizadas.
+ * Cada instancia mantiene su propio contador independiente.
+ */
+@Dependent
+public class ContadorOperacion {
 
-## Creating a native executable
+    private int contador = 0;
 
-You can create a native executable using:
+    /**
+     * Incrementa el contador en una unidad.
+     */
+    public void incrementar() {
+        contador++;
+    }
 
-```shell script
-./mvnw package -Dnative
+    /**
+     * Obtiene el valor actual del contador.
+     *
+     * @return número de incrementos realizados
+     */
+    public int getContador() {
+        return contador;
+    }
+}
 ```
+### Ejemplo 5
+```java
+import jakarta.enterprise.context.Dependent;
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+/**
+ * Clase encargada de realizar conversiones de moneda(dólar a euro).
+ */
+@Dependent
+public class ConversorMoneda {
 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
+    /**
+     * Convierte una cantidad en dólares a euros.
+     *
+     * @param dolar cantidad en dólares
+     * @return equivalente en euros
+     */
+    public double dolarAEuro(double dolar) {
+        return dolar * 0.92;
+    }
+}
 ```
+### Ejemplo 6
+``` java
+import jakarta.enterprise.context.Dependent;
+import java.util.UUID;
 
-You can then execute your native executable with: `./target/p2_api_u1_p6_ac-1.0.0-SNAPSHOT-runner`
+/**
+ * Generador de identificadores únicos.
+ * Cada instancia genera IDs independientes usando UUID.
+ */
+@Dependent
+public class GeneradorId {
 
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
+    /**
+     * Genera un identificador único.
+     *
+     * @return cadena UUID generada
+     */
+    public String generar() {
+        return UUID.randomUUID().toString();
+    }
+}
+```
+### Ejemplo 7
+``` java
+import jakarta.enterprise.context.Dependent;
 
-## Related Guides
+/**
+ * Clase que cuenta clics de manera independiente.
+ */
+@Dependent
+public class ContadorClicks {
 
-- Hibernate ORM ([guide](https://quarkus.io/guides/hibernate-orm)): Define your persistent model with Hibernate ORM and Jakarta Persistence
-- RESTEasy Classic JSON-B ([guide](https://quarkus.io/guides/rest-json)): JSON-B serialization support for RESTEasy Classic
-- Hibernate ORM with Panache ([guide](https://quarkus.io/guides/hibernate-orm-panache)): Simplify your persistence code for Hibernate ORM via the active record or the repository pattern
-- RESTEasy Classic ([guide](https://quarkus.io/guides/resteasy)): REST endpoint framework implementing Jakarta REST and more
-- SmallRye JWT ([guide](https://quarkus.io/guides/security-jwt)): Secure your applications with JSON Web Token
-- JDBC Driver - PostgreSQL ([guide](https://quarkus.io/guides/datasource)): Connect to the PostgreSQL database via JDBC
+    private int clicks = 0;
 
-## Provided Code
+    /**
+     * Incrementa el número de clics.
+     */
+    public void click() {
+        clicks++;
+    }
 
-### Hibernate ORM
+    /**
+     * Obtiene el total de clics.
+     *
+     * @return número de clics registrados
+     */
+    public int getClicks() {
+        return clicks;
+    }
+}
 
-Create your first JPA entity
+```
+## Ejemplos de uso de la anotación @ApplicationScoped
+Al ser @ApplicationScoped,existe una sola instancia compartida para toda la aplicación.
+### Ejemplo 1
+``` java
+import jakarta.enterprise.context.ApplicationScoped;
 
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
+/**
+ * Envía notificaciones del sistema.
+ */
+@ApplicationScoped
+public class NotificacionService {
 
+    /**
+     * Envía una notificación.
+     *
+     * @param mensaje contenido del mensaje
+     */
+    public void enviar(String mensaje) {
+        System.out.println("Notificación: " + mensaje);
+    }
+}
+```
+### Ejemplo 2
+```java 
+import jakarta.enterprise.context.ApplicationScoped;
 
-[Related Hibernate with Panache section...](https://quarkus.io/guides/hibernate-orm-panache)
+/**
+ * Servicio de autenticación simple.
+ */
+@ApplicationScoped
+public class AuthService {
 
+    /**
+     * Valida credenciales básicas.
+     *
+     * @param usuario usuario
+     * @param password contraseña
+     * @return true si es válido
+     */
+    public boolean login(String usuario, String password) {
+        return "admin".equals(usuario) && "1234".equals(password);
+    }
+}
+```
+### Ejemplo 3
+```java
+import jakarta.enterprise.context.ApplicationScoped;
 
-### RESTEasy JAX-RS
+/**
+ * Calcula estadísticas globales.
+ */
+@ApplicationScoped
+public class EstadisticasService {
 
-Easily start your RESTful Web Services
+    private int totalVentas = 0;
 
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+    /**
+     * Registra una venta.
+     */
+    public void registrarVenta() {
+        totalVentas++;
+    }
+
+    /**
+     * Obtiene el total de ventas.
+     *
+     * @return número de ventas
+     */
+    public int getTotalVentas() {
+        return totalVentas;
+    }
+}
+```
+### Ejemplo 4
+``` java
+import jakarta.enterprise.context.ApplicationScoped;
+
+/**
+ * Servicio de registro de mensajes.
+ */
+@ApplicationScoped
+public class LoggerService {
+
+    /**
+     * Imprime un mensaje en consola.
+     *
+     * @param mensaje texto a mostrar
+     */
+    public void log(String mensaje) {
+        System.out.println("[LOG] " + mensaje);
+    }
+}
+```
+### Ejemplo 5
+``` java
+import jakarta.enterprise.context.ApplicationScoped;
+
+/**
+ * Servicio de registro de mensajes.
+ */
+@ApplicationScoped
+public class LoggerService {
+
+    /**
+     * Imprime un mensaje en consola.
+     *
+     * @param mensaje texto a mostrar
+     */
+    public void log(String mensaje) {
+        System.out.println("[LOG] " + mensaje);
+    }
+}
+```
+### Ejemplo 6
+``` java
+import jakarta.enterprise.context.ApplicationScoped;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Gestiona usuarios en memoria.
+ */
+@ApplicationScoped
+public class UsuarioService {
+
+    private List<String> usuarios = new ArrayList<>();
+
+    /**
+     * Agrega un usuario.
+     *
+     * @param nombre nombre del usuario
+     */
+    public void agregarUsuario(String nombre) {
+        usuarios.add(nombre);
+    }
+
+    /**
+     * Lista todos los usuarios.
+     *
+     * @return lista de usuarios
+     */
+    public List<String> getUsuarios() {
+        return usuarios;
+    }
+}
+```
+### Ejemplo 7
+``` java 
+import jakarta.enterprise.context.ApplicationScoped;
+
+/**
+ * 
+ * Servicio encargado de procesar pagos dentro del sistema.
+ * 
+ */
+@ApplicationScoped
+public class PagoService {
+
+    private double totalProcesado = 0;
+
+    /**
+     * Procesa un pago y acumula el total.
+     *
+     * @param monto cantidad del pago
+     */
+    public void procesarPago(double monto) {
+        totalProcesado += monto;
+        System.out.println("Pago procesado: $" + monto);
+    }
+
+    /**
+     * Obtiene el total de pagos procesados.
+     *
+     * @return total acumulado
+     */
+    public double getTotalProcesado() {
+        return totalProcesado;
+    }
+}
+```
+## Ejemplos de uso de la anotación @Singleton
+Solo existe una instancia en toda la aplicación.
+### Ejemplo 1
+```java 
+import jakarta.inject.Singleton;
+
+/**
+ * Clase que almacena configuraciones globales del sistema.
+ * 
+ * 
+ */
+@Singleton
+public class ConfiguracionGlobal {
+
+    private String entorno = "PRODUCCION";
+
+    /**
+     * Obtiene el entorno actual.
+     *
+     * @return entorno configurado
+     */
+    public String getEntorno() {
+        return entorno;
+    }
+}
+```
+### Ejemplo 2
+``` java
+import jakarta.inject.Singleton;
+
+/**
+ * Servicio de logging centralizado.
+ */
+@Singleton
+public class LoggerSingleton {
+
+    /**
+     * Registra un mensaje en consola.
+     *
+     * @param mensaje texto a mostrar
+     */
+    public void log(String mensaje) {
+        System.out.println("[LOG GLOBAL] " + mensaje);
+    }
+}
+```
+### Ejemplo 3
+``` java
+import jakarta.inject.Singleton;
+
+/**
+ * Genera números secuenciales únicos.
+ */
+@Singleton
+public class GeneradorSecuencia {
+
+    private int secuencia = 0;
+
+    /**
+     * Genera el siguiente número de la secuencia.
+     *
+     * @return número único incremental
+     */
+    public int siguiente() {
+        return ++secuencia;
+    }
+}
+```
+### Ejemplo 4
+``` java
+import jakarta.inject.Singleton;
+
+/**
+ * Simula la gestión de una conexión única (por ejemplo, a base de datos).
+ */
+@Singleton
+public class GestorConexiones {
+
+    private boolean conectado = false;
+
+    /**
+     * Establece la conexión.
+     */
+    public void conectar() {
+        if (!conectado) {
+            conectado = true;
+            System.out.println("Conexión establecida");
+        }
+    }
+
+    /**
+     * Verifica si está conectado.
+     *
+     * @return estado de conexión
+     */
+    public boolean isConectado() {
+        return conectado;
+    }
+}
+```
+### Ejemplo 5
+``` java
+import jakarta.inject.Singleton;
+
+/**
+ * Servicio global de notificaciones.
+ */
+@Singleton
+public class NotificadorGlobal {
+
+    /**
+     * Envía una notificación del sistema.
+     *
+     * @param mensaje contenido del mensaje
+     */
+    public void notificar(String mensaje) {
+        System.out.println("Notificación global: " + mensaje);
+    }
+}
+```
+### Ejemplo 6 
+```java
+import jakarta.inject.Singleton;
+
+/**
+ * Monitorea el estado del sistema.
+ */
+@Singleton
+public class MonitorSistema {
+
+    /**
+     * Muestra el estado actual del sistema.
+     */
+    public void estado() {
+        System.out.println("Sistema operativo correctamente");
+    }
+}
+```
+### Ejemplo 7
+``` java
+import jakarta.inject.Singleton;
+import java.time.LocalDateTime;
+
+/**
+ * Proporciona la hora actual del sistema.
+ */
+@Singleton
+public class ServicioTiempo {
+
+    /**
+     * Obtiene la fecha y hora actual.
+     *
+     * @return fecha y hora
+     */
+    public LocalDateTime ahora() {
+        return LocalDateTime.now();
+    }
+}
+``` 
+## Autor 
+Alex Caiza
