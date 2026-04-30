@@ -29,8 +29,8 @@ public class Main {
         public int run(String... args) throws Exception {
             Venta v1 = new Venta("Alex Caiza", 70.00);
             this.procesadorVentaServiceTiempo.procesar(v1);
-            this.procesadorVentaServiceTiempo.reprocesar(v1);
-            this.inventarioService.registrar(v1);
+            //this.procesadorVentaServiceTiempo.reprocesar(v1);
+            //this.inventarioService.registrar(v1);
 
 
             
