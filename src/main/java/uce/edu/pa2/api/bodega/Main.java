@@ -31,6 +31,8 @@ public class Main {
             this.procesadorVentaServiceTiempo.procesar(v1);
             Venta v2 = new Venta("Maria Gomez", 150.00);
             this.procesadorVentaServiceTiempo.procesar(v2);
+            Venta v3 = new Venta("Juan Perez", 200.00);
+            this.procesadorVentaServiceTiempo.procesar(v3);
             //this.procesadorVentaServiceTiempo.reprocesar(v1);
             //this.inventarioService.registrar(v1);
 
