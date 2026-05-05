@@ -20,22 +20,12 @@ public class Main {
     public static class App implements QuarkusApplication{
 
         @Inject
-        private ProcesadorVentaServiceTiempo procesadorVentaServiceTiempo;
-
-        @Inject
-        private InventarioService inventarioService;
+        private ProcesadorCompraService procesadorCompraService;
 
         @Override
         public int run(String... args) throws Exception {
-            Venta v1 = new Venta("Alex Caiza", 70.00);
-            this.procesadorVentaServiceTiempo.procesar(v1);
-            Venta v2 = new Venta("Maria Gomez", 150.00);
-            this.procesadorVentaServiceTiempo.procesar(v2);
-            Venta v3 = new Venta("Juan Perez", 200.00);
-            this.procesadorVentaServiceTiempo.procesar(v3);
-            //this.procesadorVentaServiceTiempo.reprocesar(v1);
-            //this.inventarioService.registrar(v1);
-
+            Compra comp1 = new Compra("Alex Caiza",Double.valueOf(100));
+            this.procesadorCompraService.procesar(comp1);
 
             
             return 0;     
