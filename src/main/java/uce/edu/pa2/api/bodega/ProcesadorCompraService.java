@@ -8,12 +8,13 @@ import jakarta.inject.Inject;
 @ApplicationScoped
 public class ProcesadorCompraService {
     @Inject
-    private Instance<Descuento> descuentos;
+    private Instance<Impuesto> impuestos;
+    
     public void procesar(Compra compra){
         double total = compra.getSubtotal();
 
-        for(Descuento des : descuentos){
-            total = des.aplicar(total);
+        for(Impuesto imp: impuestos){
+            total = imp.calcular(total);
             //compra.setSubtotal(valorNuevo);
             System.out.println("Su valor a pagar es: " + total);
             
