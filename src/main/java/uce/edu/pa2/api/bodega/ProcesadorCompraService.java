@@ -7,18 +7,35 @@ import jakarta.inject.Inject;
 
 @ApplicationScoped
 public class ProcesadorCompraService {
+
     @Inject
     private Instance<Descuento> descuentos;
-    public void procesar(Compra compra){
-        double total = compra.getSubtotal();
 
-        for(Descuento des : descuentos){
-            total = des.aplicar(total);
-            //compra.setSubtotal(valorNuevo);
-            System.out.println("Su valor a pagar es: " + total);
-            
+    @Inject
+    private Instance<Validador> validadores;
+
+    public void procesar(Compra compra){
+        System.out.println("Procesando compra...");
+        for(Validador val : validadores){
+
+        if(!val.validar(compra)){
+            System.out.println("Compra cancelada");
+            return;
         }
-        compra.setSubtotal(total);
     }
 
+        double total = compra.getSubtotal();
+
+
+        for(Descuento des : descuentos){
+
+            total = des.aplicar(total);
+
+            compra.setSubtotal(total);
+
+            System.out.println("Su valor a pagar es: " + total);
+
+            
+        }
+    }
 }

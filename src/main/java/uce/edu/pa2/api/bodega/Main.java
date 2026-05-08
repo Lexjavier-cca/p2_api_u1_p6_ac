@@ -27,6 +27,14 @@ public class Main {
             Compra comp1 = new Compra("Alex Caiza",Double.valueOf(100));
             this.procesadorCompraService.procesar(comp1);
 
+            Compra comp2 = new Compra("",Double.valueOf(100));
+            this.procesadorCompraService.procesar(comp2);
+
+            Compra comp3 = new Compra("Maria Perez",Double.valueOf(0.0));
+            this.procesadorCompraService.procesar(comp3);
+
+            Compra comp4 = new Compra(null,Double.valueOf(0.0));
+            this.procesadorCompraService.procesar(comp4);
             
             return 0;     
         }
